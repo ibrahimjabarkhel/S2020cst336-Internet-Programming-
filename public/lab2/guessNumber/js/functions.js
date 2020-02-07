@@ -1,4 +1,7 @@
 // Your JavaScript goes here
+
+
+
 var randomNumber = Math.floor(Math.random()*99) + 1;
 var guesses = document.querySelector('#guesses');
 var lastResult = document.querySelector('#lastResult');
@@ -39,6 +42,7 @@ function checkGuess() {
         else if (guessCount === 7 ){
             lastResult.innerHTML = 'Sorry, you lost!';
             lost++;
+            gamesWon.innerHTML = "Games won: " + won + "\n" + "Games lost: "+ lost;
             setGameOver();
         }
         else{
