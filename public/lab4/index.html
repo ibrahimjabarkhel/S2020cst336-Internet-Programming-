@@ -1,0 +1,198 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>AJAX: Sign Up Page</title>
+
+  <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+  <link href="css/styles.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body id="dummybodyid">
+  <h1 id="header"> Sign Up Form</h1>
+
+  <form id="signupForm" method="get" action="welcome.html">
+    <!-- <fieldset> -->
+      <!-- <legend>Sign Up</legend> -->
+      <div><label>First Name:</label><input type="text" name="fName"></div>
+      <div><label>Last Name:</label><input type="text" name="lName"></div>
+      <div><label>Gender: </label><input type="radio" name="gender" value="m"> Male
+                                <input type="radio" name="gender" value="f"> Female</div><br>
+      <div><label>Zip Code:</label><input type="text" name="zip" id="zip"></div>
+      <div><span id="city">City:</span></div>
+      <div><span id="latitude">Latitude:</span></div>
+      <div><span id="longitude">Longitude:</span></div><br>
+      <div><label> State: </label><select id="state" name="state"> </select></div>
+      <div><label>Select a County:</label><select id="county"></select></div>
+      <div><label>Desired Username:</label><input type="text" id="username" name="username">
+                                           <span id="usernameError"></span></div><br>
+      <div><label>Password:</label><input type="password" id="password" name="password">
+                                   <span id="passwordError"></span></div>
+      <div><label>Password Again:</label><input type="password" id="passwordAgain">
+                                         <span id="passwordAgainError"></span></div>
+      <div><input type="submit" value="Sign up!"></div>
+    <!-- </fieldset> -->
+  </form>
+
+
+
+  <script>
+
+      var usernameAvailable = false;
+      // Displaying city from API after typing a zip code
+      $("#zip").on("change", function(){
+
+          $.ajax({
+            method: "GET",
+            url: "https://itcdland.csumb.edu/~milara/ajax/cityInfoByZip.php",
+            dataType: "json",
+            data: { 
+              "zip" : $("#zip").val(),
+              "latitude" : $("#latitude").val(),
+              "longitude" : $("#longitude").val() 
+
+            },
+            success: function(result, status){
+              //alert(result);
+              $("#city").html("City: " + result.city);
+              $("#latitude").html("Latitude: " + result.latitude);
+              $("#longitude").html("Longitude: " + result.longitude);
+
+            }
+
+          });//ajax
+          //alert($("#zip").val());
+      });//zip
+
+      $("#state").on("focus", function(){
+
+          //alert($("#state").val());
+
+          $.ajax({
+            method : "GET",
+            url : "https://itcdland.csumb.edu/~milara/ajax/states.php",
+            dataType : "json",
+            data : {
+              "state" : $("#state").val(),
+              "usps" : $("#value").val()
+            },
+            success : function(result, status) {
+              //alert(result[0].county);
+              $("#state").html("<option> Select One </option>");
+              result.forEach(function (s) {
+                  $("#state").append("<option value=" + s.usps +">" + s.state + "</option>");
+              });
+            }
+
+          });//ajax
+
+      });//state
+
+
+      $("#state").on("change", function(){
+
+          //alert($("#state").val());
+
+          $.ajax({
+            method : "GET",
+            url : "https://itcdland.csumb.edu/~milara/ajax/countyList.php",
+            dataType : "json",
+            data : {
+              "state" : $("#state").val()
+            },
+            success : function(result, status) {
+              //alert(result[0].county);
+              $("#county").html("<option> Select One </option>");
+              result.forEach(function (i) {
+                  $("#county").append("<option>" + i.county + "</option>");
+              });
+            }
+
+          });//ajax
+
+      });//state
+
+      //https://itcdland.csumb.edu/~milara/ajax/countyList.php?state=ca
+
+      $("#username").change(function(){
+
+          //alert($("#username").val());
+
+          $.ajax({
+            method : "GET",
+            url : "https://cst336.herokuapp.com/projects/api/usernamesAPI.php",
+            dataType : "json",
+            data : {
+              "username" : $("#username").val()
+            },
+            success : function(result, status) {
+              
+              if(result.available){
+                $("#usernameError").html("Username is available!");
+                $("#usernameError").css("color", "green");
+                usernameAvailable = true;
+              }
+              else{
+                $("#usernameError").html("Username is unavailable!");
+                $("#usernameError").css("color", "red");
+                usernameAvailable = false;
+              }
+
+            }
+
+          });//ajax
+
+      });//username
+
+
+      //https://itcdland.csumb.edu/~milara/ajax/states.php
+
+      $("#signupForm").on("submit", function(event){
+
+        //alert("Submitting form...");
+        if (!isFormValid()){
+          event.preventDefault();
+        }
+      });
+
+      function isFormValid(){
+        var isValid =true;
+
+        $("#passwordAgainError").html("");
+        $("#passwordError").html("");
+        $("#usernameError").html("");
+
+        if (!usernameAvailable){
+          isValid = false;
+        }
+
+        if($("#username").val().length == 0){
+          isValid= false;
+          $("#usernameError").html("Username is required");
+          $("#usernameError").css("color", "red");
+        }
+
+        if ($("#password").val() != $("#passwordAgain").val()){
+          $("#passwordAgainError").html("Password Mismatch!");
+          $("#passwordAgainError").css("color", "red");
+          isValid = false;
+        }
+
+        if ($("#password").val().length < 6){
+          $("#passwordError").html("Password has to be at least 6 characters!");
+          $("#passwordError").css("color", "red");
+          isValid = false;
+        }
+
+        return isValid;
+      }
+      
+
+      
+  </script>
+
+</body>
+
+</html>
