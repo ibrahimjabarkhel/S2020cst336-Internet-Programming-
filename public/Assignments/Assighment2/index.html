@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <!-- I hope you enjoy the game! -->
+    <head>
+        <title>Slot Machine</title>
+        <style src = style.css> </style>
+        <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+
+    </head>
+    <body>
+        <p id="instructions1"> Cherry = $, Bar = ||, Seven = 7 </p>
+
+        <br><br>
+        <div id = "instuct-div">
+        <p id = "instructions" > A row of same kind will win a jackpot!  </p>
+        </div>
+        <div class = "container">
+            <div id = "buttons">
+            <button class = "bet1">Bet $1</button>
+        <button class = "bet5" >Bet $5 </button>
+        <button class = "bet10" >Bet $10 </button>
+        </div>
+            <div id = "slot-div">
+                <p>
+                <span class=gold-text id="money"> $$$$$$$ </span>
+                <br>
+                <span id =  "victoryMessage">Win the game by winning more than $1,000!  </span></p>
+                <p id = "slots" style="list-style: none;">
+                <span id = "row1">  Row 1  </span> <br>
+                <span id = "row2">  Row 2  </span> <br>
+                <span id = "row3">  Row 3   </span>
+                </p> 
+             </div>
+        </div>
+
+        <p id ="win" class = gold-text>  </p>
+        
+
+        <script type="text/javascript" src="js/app.js"></script>
+    </body>
+</html>
