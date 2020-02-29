@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Lab 5: Pixaby Search</title>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script> 
+   <link href="css/styles.css" rel="stylesheet" type="text/css" />
+  <script>
+  /*global $*/
+  /*global _*/
+      $(document).ready(function(){
+        
+        $("#keyword").val();
+        search();
+        
+        //ananymos function
+        $("#searchBut").on("click",function(){
+          
+          search();
+          
+        })
+        
+        //or:
+        // $("#searchBut").on("click", search);
+        
+      function search(){  
+              $.ajax({
+        
+                method: "GET",
+                url: "https://pixabay.com/api/",
+                dataType: "json",
+                data: { "key": "13797844-ed71b4f3440787d8dd7cb52c0",
+                        "q": $("#keyword").val(),
+               "orientation": $("#orientation").val()},
+                
+                success: function(result,status) {
+                  
+                  //shuffle array
+                   result.hits = _.shuffle(result.hits);
+                    
+                  //alert(result);
+                  $("#image").html(`Likes: ${result.hits[0].likes}
+                                                <br><img src='${result.hits[0].webformatURL}'>`);
+                    $("#image2").html(`Likes: ${result.hits[1].likes}
+                                                <br><img src='${result.hits[1].webformatURL}'>`);
+                      $("#image3").html(`Likes: ${result.hits[2].likes}
+                                                <br><img src='${result.hits[2].webformatURL}'>`);
+                        $("#image4").html(`Likes: ${result.hits[3].likes}
+                                                <br><img src='${result.hits[3].webformatURL}'>`);
+                  }
+          
+                });//ajax
+        }
+
+        //$("#images").html("<img scr=' '>")
+      
+      
+      });//document ready
+  </script>
+  
+  
+  
+</head>
+<body>
+  <h1 id ="title">Pixaby image search </h1>
+  <div class = "searchBox"id="searchBox">
+  <p>keyword: <input id="keyword" type= "text"> <button id="searchBut"> search </button> </p>
+  </div>
+  <div class="selection">
+ <h5 id="orientationID">Orientation: </h5>
+        <select id="orientation">
+            <option value="">Select One</option>
+            <option value="vertical">vertical</option>
+            <option value="horizontal">horizontal</option>
+        </select>
+  <br><br>
+ </div> 
+  
+  
+
+<!--/** {*/-->
+<!--/*  box-sizing: border-box;*/-->
+<!--/*}*/-->
+
+<!--/*.column {*/-->
+<!--/*  float: left;*/-->
+<!--/*  width: 33.33%;*/-->
+<!--/*  padding: 5px;*/-->
+<!--/*}*/-->
+
+<!--/* Clearfix (clear floats) */-->
+<!--/*.row::after {*/-->
+<!--/*  content: "";*/-->
+<!--/*  clear: both;*/-->
+<!--/*  display: table;*/-->
+<!--/*}*/-->
+
+</head>
+<body>
+
+<!--<h2>Image Testing:</h2>-->
+
+<!--<div class="row">-->
+<!--  <div id = "image" class="column" style = "width:120px">-->
+    <!--<img src="img_snow.jpg" alt="Snow" style="width:100%">-->
+<!--  </div>-->
+<!--  <div id = "image2" class="column" style = "width:120px">-->
+    <!--<img src="img_forest.jpg" alt="Forest" style="width:100%">-->
+<!--  </div>-->
+<!--  <div id = "image3" class="column" style = "width:120px">-->
+    <!--<img src="img_mountains.jpg" alt="Mountains" style="width:100%">-->
+<!--  </div>-->
+<!--  <div id = "image4" class="column" style = "width:120px">-->
+    <!--<img src="img_mountains.jpg" alt="Mountains" style="width:100%">-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--</body>-->
+
+    <!--place holder-->
+<div class = 'row' id ="wrapper">
+    <div style="width:100%;height:400px" class='column' id="image" > </div> 
+   <div class='column1' id="image2" > </div>
+    <div class='column2' id="image3" > </div>
+    <div class='column3' id="image4" > </div>
+</div>
+</body>
+</html>

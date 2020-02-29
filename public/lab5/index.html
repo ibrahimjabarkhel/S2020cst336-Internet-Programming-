@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script> 
+
+
+	<title>Pixabay API</title>
+
+	<script type="text/javascript" src="app.js"></script>
+
+</head>
+	<body>
+		
+
+		<h1>Pixabay Image Search</h1>
+	
+		Keyword: <input id="find" type="text" placeholder="Enter ANY keyword"/>
+		<br>
+		Orientation: <select id="position" name="verticalHorizontal">
+			<option value="">Select one</option>
+	   		<option value="vertical">Vertical</option>
+	    	<option value="horizontal">Horizontal</option>
+	    	</select>
+
+    	<button id="search">Search</button>
+
+    	<hr>
+
+
+		<div class = 'rowOfPics'>
+			<div class='column' id="image" > </div> 
+			<div class='column1' id="image2" > </div>
+			<div class='column2' id="image3" > </div>
+			<div class='column3' id="image4" > </div>
+		</div>
+
+
+	</body>
+
+</html>
