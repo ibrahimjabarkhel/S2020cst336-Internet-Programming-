@@ -42,8 +42,4 @@ let openLibrary = function(){
       console.log(err);
     }
   });
-<<<<<<< HEAD
-  
-=======
->>>>>>> 45cb6777a01e5c236108c0168553a4110f6565f8
 }

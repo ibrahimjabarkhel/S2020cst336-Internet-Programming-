@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Midterm Exam</title>
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  	<link rel="stylesheet" type="text/css" href="styles.css">
+  	
+
+  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  </head>
+  <body>
+
+  	<div class="container">
+      
+      <!-- Query Section -->
+  		<div class="jumbotron">
+  			<h1>Open Library</h1>
+  			<p>Please enter the ISBN of the book you'd like to retrieve</p>
+
+  			<form action="" method="post" onsubmit="openLibrary(); return false;">
+  				<div class="form-group row">
+  					<label for="ISBN_val" class="col-sm-2 col-form-label">ISBN</label>
+  					<div class="col-sm-4">
+  						<input type="text" class="form-control" id="ISBN_val" placeholder="0" required>
+  					</div>
+  					<div class="col-sm-6">
+  						<button type="submit" class="btn btn-primary">Query</button>
+  					</div>
+  				</div>
+  			</form>
+  		</div>
+
+
+      <!-- Result Section -->
+      <div class="form-group row">
+    		<div  class="col-sm-3" class="cover" id="image"></div>
+        <div  class="col-sm-4" class="form-control" class="info" id="bookInfo"></div>
+      </div>
+
+
+  	</div>
+  	<script type="text/javascript" src="functions.js"></script>
+
+  </body>
+</html>
