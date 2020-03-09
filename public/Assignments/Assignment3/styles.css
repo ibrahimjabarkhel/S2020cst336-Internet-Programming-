@@ -1,0 +1,45 @@
+
+header{
+  background: blue;
+
+}
+
+body{
+  text-align: center;
+}
+
+.jumbo {
+  background-color: grey;
+}
+
+.rowOfPics{
+  display: inline-flex;
+  height: 550px;
+  align-content: start;
+  grid-gap: 100px;
+   
+  /*background-color: #2196F3;*/
+  padding: 20px;
+}
+
+#vertical {
+
+	border-radius: 20px;
+	height: 400px;
+	width: 250px;
+}
+
+#horizontal {
+
+	border-radius: 20px;
+	height: 250px;
+	width: 350px;
+
+}
+
+.emoji {
+  align-content: center;
+  text-align: center;
+  height: 30px;
+  width: 30px;
+}
