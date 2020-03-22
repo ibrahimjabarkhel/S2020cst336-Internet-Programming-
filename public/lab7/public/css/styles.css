@@ -1,0 +1,29 @@
+body{
+  text-align: center;
+}
+
+.top {
+  background-color: grey;
+}
+
+.rowOfPics {
+  display: inline-flex;
+  height: 400px;
+  align-content: start;
+  grid-gap: 100px;
+   
+  /*background-color: #2196F3;*/
+  padding: 20px;
+}
+
+#vertical {
+	border-radius: 20px;
+    width: 200px;
+    height: 350px;
+}
+
+#horizontal {
+	border-radius: 20px;
+    width: 350px;
+    height: 200px;
+}

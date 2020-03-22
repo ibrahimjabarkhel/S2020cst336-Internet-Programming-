@@ -21,7 +21,8 @@ app.get("/earth", function(req, res){
 });
 
 // server listener
-app.listen("8080", "127.0.0.1", function(){
-    console.log("Express Server is Running...");
+app.listen(process.env.PORT, process.env.IP, function(){
+    console.log("Running Express Server...");
 });
+
 

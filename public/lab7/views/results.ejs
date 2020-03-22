@@ -1,0 +1,19 @@
+<%- include ('partials/header') -%>
+
+        <% if (orientation == 'vertical' ){ %>
+            <div class="rowOfPics">
+                <div><h3> Likes: <%= images.hits[0].likes %> </h3><br><img id="vertical" hspace="4" src='<%= images.hits[0].largeImageURL %>' ></div>
+                 <div><h3> Likes: <%= images.hits[1].likes %> </h3><br><img id="vertical" hspace="4" src='<%= images.hits[1].largeImageURL %>' ></div>
+                  <div><h3> Likes: <%= images.hits[2].likes %> </h3><br><img id="vertical" hspace="4" src='<%= images.hits[2].largeImageURL %>' ></div>
+                   <div><h3> Likes: <%= images.hits[3].likes %> </h3><br><img id="vertical" hspace="4" src='<%= images.hits[3].largeImageURL %>' ></div>
+            </div>
+        <% }else{ %>
+            <div class="rowOfPics">
+                <div><h3> Likes: <%= images.hits[0].likes %> </h3><br><img id="horizontal" hspace="4" src='<%= images.hits[0].largeImageURL %>' ></div>
+                 <div><h3> Likes: <%= images.hits[1].likes %> </h3><br><img id="horizontal" hspace="4" src='<%= images.hits[1].largeImageURL %>' ></div>
+                  <div><h3> Likes: <%= images.hits[2].likes %> </h3><br><img id="horizontal" hspace="4" src='<%= images.hits[2].largeImageURL %>' ></div>
+                   <div><h3> Likes: <%= images.hits[3].likes %> </h3><br><img id="horizontal" hspace="4" src='<%= images.hits[3].largeImageURL %>' ></div>
+            </div>
+        <% } %>
+        
+<%- include ('partials/footer') -%>
